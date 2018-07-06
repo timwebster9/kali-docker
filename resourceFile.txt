@@ -1,0 +1,5 @@
+use auxiliary/scanner/portscan/syn
+set PORTS 1-100
+set RHOSTS 192.168.1.116
+run
+quit
