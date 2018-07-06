@@ -1,0 +1,3 @@
+FROM metasploitframework/metasploit-framework
+
+COPY resourceFile.txt /probe/
