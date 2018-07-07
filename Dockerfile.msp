@@ -1,3 +1,9 @@
 FROM metasploitframework/metasploit-framework
 
+RUN apk update --no-cache \
+  && apk add make py-pip \
+  && apk add --no-cache --virtual build-deps gcc musl-dev python2-dev \
+  && pip install azure-cli \
+  && apk del --purge build-deps
+
 COPY resourceFile.txt /probe/
