@@ -11,5 +11,3 @@ RUN apk update --no-cache \
   && apk del --purge build-deps
 
 ENV PATH ${PATH}:/usr/src/metasploit-framework
-
-COPY resourceFile.txt /probe/
