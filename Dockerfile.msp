@@ -3,11 +3,15 @@ FROM metasploitframework/metasploit-framework
 RUN apk update --no-cache \
   && apk add make py-pip \
   && apk add --no-cache --virtual build-deps git perl build-base libbsd zlib-dev musl-dev python2-dev \
-  #&& pip install azure-cli \
+  && pip install azure-cli \
   && git clone -b 1.11.8-rbsec https://github.com/rbsec/sslscan /tmp/sslscan \
   && cd /tmp/sslscan \
   && make static && make install \
   && rm -rf /tmp/* \
-  && apk del --purge build-deps
+  && apk del --purge build-deps \
+  && addgroup -g 1001 msf \
+  && adduser -u 1001 -D msf -g msf -G msf msf \
+  && mkdir -p /opt/jenkins \
+  && chown msf:msf /opt/jenkins
 
 ENV PATH ${PATH}:/usr/src/metasploit-framework
